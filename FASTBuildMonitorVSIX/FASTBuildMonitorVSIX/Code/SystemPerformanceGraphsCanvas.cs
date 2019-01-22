@@ -63,7 +63,7 @@ namespace FASTBuildMonitorVSIX
                     Brushes.Red,
                     Brushes.Orange,
                     Brushes.Aquamarine,
-                    Brushes.Black,
+                    VisualStyle.MediumGray,
                     Brushes.Chocolate,
                     Brushes.Yellow,
                     Brushes.Green,
@@ -113,6 +113,7 @@ namespace FASTBuildMonitorVSIX
                     StackPanel stackPanel = new StackPanel();
                     stackPanel.Orientation = Orientation.Horizontal;
                     _treeViewItem.Header = stackPanel;
+                    _treeViewItem.Foreground = VisualStyle.Foreground;
 
                     _checkBox = new CheckBox();
                     _checkBox.IsChecked = _enabled;
@@ -571,7 +572,7 @@ namespace FASTBuildMonitorVSIX
 
                         if (_selectedGraphPoint != null)
                         {
-                            TextUtils.DrawText(dc, string.Format("{0}: {1:0.00}{2}", _description, _selectedGraphPoint._value, _unitTag), SystemPerformanceGraphsCanvas._savedHorizontalViewport.X, _selectedGraphPoint._coordinates.Y, 200, false, Brushes.Black);
+                            TextUtils.DrawText(dc, string.Format("{0}: {1:0.00}{2}", _description, _selectedGraphPoint._value, _unitTag), SystemPerformanceGraphsCanvas._savedHorizontalViewport.X, _selectedGraphPoint._coordinates.Y, 200, false, VisualStyle.Foreground);
 
                             dc.DrawGeometry(Brushes.Gray, new Pen(Brushes.Gray, 1), _selectionLinesGeometry);
                         }
@@ -759,6 +760,7 @@ namespace FASTBuildMonitorVSIX
                     StackPanel stackPanel = new StackPanel();
 
                     _treeViewItem.Header = stackPanel;
+                    _treeViewItem.Foreground = VisualStyle.Foreground;
 
                     stackPanel.Orientation = Orientation.Horizontal;
 

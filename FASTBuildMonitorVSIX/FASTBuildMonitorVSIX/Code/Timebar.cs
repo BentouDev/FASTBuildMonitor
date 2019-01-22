@@ -17,8 +17,6 @@ namespace FASTBuildMonitorVSIX
 {
     class TimeBar : Canvas
     {
-        SolidColorBrush Foreground;
-
         public TimeBar(Canvas parentCanvas)
         {
             _parentCanvas = parentCanvas;
@@ -27,30 +25,13 @@ namespace FASTBuildMonitorVSIX
             this.Height = _parentCanvas.Height;
 
             _parentCanvas.Children.Add(this);
-
-            try
-            {
-                var key = Microsoft.VisualStudio.PlatformUI.EnvironmentColors.ToolWindowTextColorKey;
-                var res = FindResource(key);
-
-                Foreground = new SolidColorBrush((System.Windows.Media.Color) res);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Exception: {e}");
-            }
-
-            if (Foreground == null)
-            {
-                Foreground = Brushes.Black;
-            }
         }
 
         protected override void OnRender(DrawingContext dc)
         {
-            dc.DrawGeometry(Foreground, new Pen(Foreground, 1), _geometry);
+            dc.DrawGeometry(VisualStyle.Foreground, new Pen(VisualStyle.Foreground, 1), _geometry);
 
-            _textTags.ForEach(tag => TextUtils.DrawText(dc, tag._text, tag._x, tag._y, 100, false, Foreground));
+            _textTags.ForEach(tag => TextUtils.DrawText(dc, tag._text, tag._x, tag._y, 100, false, VisualStyle.Foreground));
         }
 
         void UpdateGeometry(double X, double Y, double zoomFactor)

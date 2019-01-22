@@ -51,6 +51,7 @@ namespace FASTBuildMonitorVSIX
         {
             // Initialize text rendering
             TextUtils.StaticInitialize();
+            VisualStyle.Initialize(this);
 
             // Time bar display
             _timeBar = new TimeBar(TimeBarCanvas);
@@ -1176,7 +1177,7 @@ namespace FASTBuildMonitorVSIX
                         brush.ViewportUnits = BrushMappingMode.Absolute;
                         brush.Viewport = new Rect(0, 0, 40, 20);
 
-                        dc.DrawRectangle(brush, new Pen(Brushes.Black, 1), _currentLODRect);
+                        dc.DrawRectangle(brush, new Pen(VisualStyle.MediumGray, 1), _currentLODRect);
 
                         AddVisibleElement(_currentLODRect, string.Format("{0} events", _currentLODCount));
                     }
@@ -1885,7 +1886,7 @@ namespace FASTBuildMonitorVSIX
 #endif
                         dc.DrawImage(_brush.ImageSource, _progressRect);
 
-                        SolidColorBrush colorBrush = Brushes.Black;
+                        SolidColorBrush colorBrush = VisualStyle.MediumGray;
 
                         if (_state == BuildEventState.IN_PROGRESS)
                         {
